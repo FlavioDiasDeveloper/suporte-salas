@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar Suporte</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(180deg, #191111, #514d4d);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: self-start;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 500px;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            color: #333;
+        }
+
+        .logo-header {
+            max-width: 120px;
+            margin-bottom: 20px;
+        }
+
+        .sala-info {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 15px 0;
+            padding: 12px;
+            /* background: #3498db; */
+            color: black;
+            border-radius: 8px;
+        }
+
+        .btn {
+            display: block;
+            width: 90%;
+            margin: 15px auto;
+            padding: 14px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-ti {
+            background: #fea058;
+        }
+
+        .btn-ti:hover {
+            background: #d35400;
+        }
+
+        .btn-manutencao {
+            background: #fea058;
+        }
+
+        .btn-manutencao:hover {
+            background: #d35400;
+        }
+
+        .error {
+            color: #c0392b;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="assets/suporte-ti.png" alt="Solicitar Suporte" class="logo-header">
+
+        <div class="sala-info" id="nome-sala">Sala: Carregando...</div>
+
+        <p>Selecione o tipo de suporte desejado:</p>
+
+        <button class="btn btn-ti" onclick="redirecionar('ti')">
+            Suporte de TI (Computadores, Wi-Fi, etc.)
+        </button>
+
+        <button class="btn btn-manutencao" onclick="redirecionar('manutencao')">
+            Manutenção (Lâmpadas, Ar-condicionado, etc.)
+        </button>
+
+        <p id="mensagem-erro" class="error"></p>
+    </div>
+
+    <script>
+        const linksManutencao = {
+            "IA-2.02": "https://app.produttivo.com.br/r/d91a0a57-0d3b-4e23-9f43-f7e43d8a0c66?t=uxSqFdAr8zqGds0L58UsyQsgu4jt-uXxNS4LDU8NemawHhUf8Wi3ag",
+            "LAB-3.05": "https://exemplo.com/manutencao-lab305-criptografado",
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const sala = urlParams.get('sala');
+
+        if (sala) {
+            document.getElementById("nome-sala").textContent = `Sala: ${sala.toUpperCase()}`;
+        } else {
+            document.getElementById("nome-sala").textContent = "Sala não identificada";
+        }
+
+        function redirecionar(tipo) {
+            const mensagemErro = document.getElementById("mensagem-erro");
+            mensagemErro.textContent = "";
+
+            if (!sala) {
+                mensagemErro.textContent = "Erro: Sala não identificada. Escaneie o QRCode novamente.";
+                return;
+            }
+
+            if (tipo === 'ti') {
+                window.location.href = `https://docs.google.com/forms/d/e/1FAIpQLSci61oxLs-88LfNgW813mc1MIIWVKs3Lo0zdxivu-Lbfv9wnA/viewform?usp=pp_url&entry.2074073475=${sala}`;
+                return;
+            }
+
+            if (tipo === 'manutencao') {
+                const link = linksManutencao[sala];
+                if (link) {
+                    window.location.href = link;
+                } else {
+                    mensagemErro.textContent = `Erro: Sala ${sala} não possui link de manutenção cadastrado.`;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
