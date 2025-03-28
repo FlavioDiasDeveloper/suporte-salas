@@ -1,362 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="assets/suporte-ti.png">
+    <link rel="icon" type="image/png" href="assets/img/suporte-ti.png">
     <title>Solicitar Suporte</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-            background: linear-gradient(180deg, #191111, #514d4d);
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: self-start;
-            height: 100vh;
-        }
-
-        .container {
-            max-width: 500px;
-            padding: 25px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            color: #333;
-        }
-
-        .logo-header {
-            max-width: 120px;
-            margin-bottom: 20px;
-        }
-
-        .sala-info {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin: 15px 0;
-            padding: 12px;
-            color: black;
-            border-radius: 8px;
-        }
-
-        .btn {
-            display: block;
-            width: 90%;
-            margin: 15px auto;
-            padding: 14px;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: transform 0.2s, background 0.3s;
-        }
-
-        .btn:hover {
-            transform: scale(1.05);
-        }
-
-        .btn-ti {
-            background: #fea058;
-        }
-
-        .btn-ti:hover {
-            background: #d35400;
-        }
-
-        .btn-manutencao {
-            background: #fea058;
-        }
-
-        .btn-manutencao:hover {
-            background: #d35400;
-        }
-
-        .error {
-            color: #c0392b;
-            font-weight: bold;
-            margin-top: 15px;
-        }
-
-        select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-
-        #sala-container {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
 <body>
     <div class="container">
-        <img src="assets/suporte-ti.png" alt="Solicitar Suporte" class="logo-header">
+        <img src="assets/img/suporte-ti.png" alt="Solicitar Suporte" class="logo-header">
 
         <div class="sala-info" id="nome-sala">Sala: Carregando...</div>
 
         <div id="sala-container">
             <p>Selecione sua sala:</p>
-            <select id="sala-select" onchange="selecionarSala()">
+            <select id="sala-select">
                 <option value="">-- Escolha uma sala --</option>
-                <option value="IA-2.02">IA-2.02</option>
-                <option value="DEPÓSITO">DEPÓSITO</option>
-                <option value="DEPÓSITO MANUTENÇÃO">DEPÓSITO MANUTENÇÃO</option>
-                <option value="DEPÓSITO SEGURANCAS">DEPÓSITO SEGURANCAS</option>
-                <option value="EC-1.01">EC-1.01</option>
-                <option value="EC-1.02">EC-1.02</option>
-                <option value="EC-1.03">EC-1.03</option>
-                <option value="EC-1.04">EC-1.04</option>
-                <option value="EC-1.CASA DE MÁQUINAS 2">EC-1.CASA DE MÁQUINAS 2</option>
-                <option value="EC-1.CIRCULAÇÃO">EC-1.CIRCULAÇÃO</option>
-                <option value="EC-1.PÁTIO INTERNO">EC-1.PÁTIO INTERNO</option>
-                <option value="EC-1.PLATAFORMA METÁLICA">EC-1.PLATAFORMA METÁLICA</option>
-                <option value="EC-1.RECEPÇÃO/DRIVE">EC-1.RECEPÇÃO/DRIVE</option>
-                <option value="EC-2.01">EC-2.01</option>
-                <option value="EC-2.02">EC-2.02</option>
-                <option value="EC-2.03">EC-2.03</option>
-                <option value="EC-2.04">EC-2.04</option>
-                <option value="EC-2.05">EC-2.05</option>
-                <option value="EC-2.06">EC-2.06</option>
-                <option value="EC-2.07">EC-2.07</option>
-                <option value="EC-2.08">EC-2.08</option>
-                <option value="EC-2.HALL">EC-2.HALL</option>
-                <option value="EC-3.01">EC-3.01</option>
-                <option value="EC-3.02">EC-3.02</option>
-                <option value="EC-3.03">EC-3.03</option>
-                <option value="EC-3.04">EC-3.04</option>
-                <option value="EC-3.05">EC-3.05</option>
-                <option value="EC-3.06">EC-3.06</option>
-                <option value="EC-3.07">EC-3.07</option>
-                <option value="EC-3.08">EC-3.08</option>
-                <option value="EC-3.09">EC-3.09</option>
-                <option value="EC-3.10">EC-3.10</option>
-                <option value="EC-3.11">EC-3.11</option>
-                <option value="EC-3.12">EC-3.12</option>
-                <option value="EC-4.CASA DE MÁQUINAS 1">EC-4.CASA DE MÁQUINAS 1</option>
-                <option value="ED-1.LANCHONETE">ED-1.LANCHONETE</option>
-                <option value="FD-01.10">FD-01.10</option>
-                <option value="FD-01.11">FD-01.11</option>
-                <option value="FD-1.01">FD-1.01</option>
-                <option value="FD-1.02">FD-1.02</option>
-                <option value="FD-1.03">FD-1.03</option>
-                <option value="FD-1.04">FD-1.04</option>
-                <option value="FD-1.05">FD-1.05</option>
-                <option value="FD-1.06">FD-1.06</option>
-                <option value="FD-1.07">FD-1.07</option>
-                <option value="FD-1.08">FD-1.08</option>
-                <option value="FD-1.09">FD-1.09</option>
-                <option value="FD-1.CASA DE MÁQUINAS">FD-1.CASA DE MÁQUINAS</option>
-                <option value="FD-1.HALL DA LANCHONETE">FD-1.HALL DA LANCHONETE</option>
-                <option value="FD-1.RECEPÇÃO FUNDAMENTAL">FD-1.RECEPÇÃO FUNDAMENTAL</option>
-                <option value="FD-1.REFEITÓRIO FUNDAMENTAL">FD-1.REFEITÓRIO FUNDAMENTAL</option>
-                <option value="FD-2.01">FD-2.01</option>
-                <option value="FD-2.02">FD-2.02</option>
-                <option value="FD-2.03">FD-2.03</option>
-                <option value="FD-2.04">FD-2.04</option>
-                <option value="FD-2.COZINHA REFEITÓRIO">FD-2.COZINHA REFEITÓRIO</option>
-                <option value="IA-1.01">IA-1.01</option>
-                <option value="IA-1.02">IA-1.02</option>
-                <option value="IA-1.03">IA-1.03</option>
-                <option value="IA-1.04">IA-1.04</option>
-                <option value="IA-1.05">IA-1.05</option>
-                <option value="IA-1.06">IA-1.06</option>
-                <option value="IA-1.07">IA-1.07</option>
-                <option value="IA-1.08">IA-1.08</option>
-                <option value="IA-1.09">IA-1.09</option>
-                <option value="IA-1.10">IA-1.10</option>
-                <option value="IA-1.11">IA-1.11</option>
-                <option value="IA-1.BIBLIOTECA">IA-1.BIBLIOTECA</option>
-                <option value="IA-1.CASA DE MÁQUINAS">IA-1.CASA DE MÁQUINAS</option>
-                <option value="IA-1.FRALDÁRIO">IA-1.FRALDÁRIO</option>
-                <option value="IA-1.RECEPÇÃO INFANTIL (CORREDOR DO PÁTIO)">IA-1.RECEPÇÃO INFANTIL (CORREDOR DO PÁTIO)
-                </option>
-                <option value="IA-1.RECEPÇÃO INFANTIL (ENTRADA)">IA-1.RECEPÇÃO INFANTIL (ENTRADA)</option>
-                <option value="IA-1.RECEPÇÃO INFANTIL (LANCHONETE)">IA-1.RECEPÇÃO INFANTIL (LANCHONETE)</option>
-                <option value="IA-2.01">IA-2.01</option>
-                <option value="IA-2.03">IA-2.03</option>
-                <option value="IA-2.04">IA-2.04</option>
-                <option value="IA-2.05">IA-2.05</option>
-                <option value="IA-2.06">IA-2.06</option>
-                <option value="IA-2.07">IA-2.07</option>
-                <option value="IA-2.08">IA-2.08</option>
-                <option value="IA-2.HALL ADMINISTRATIVO">IA-2.HALL ADMINISTRATIVO</option>
-                <option value="LV - 1.01">LV - 1.01</option>
-                <option value="LV - 1.02">LV - 1.02</option>
-                <option value="LV - 2.01">LV - 2.01</option>
-                <option value="LV-1.ÁREA TÉCNICA">LV-1.ÁREA TÉCNICA</option>
-                <option value="LV-1.LANCHONETE">LV-1.LANCHONETE</option>
-                <option value="LV-1.QUADRA POLIESPORTIVA">LV-1.QUADRA POLIESPORTIVA</option>
-                <option value="LV-2.02">LV-2.02</option>
-                <option value="LV-3.01">LV-3.01</option>
-                <option value="LV-3.02">LV-3.02</option>
-                <option value="LV-3.03">LV-3.03</option>
-                <option value="LV-3.04">LV-3.04</option>
-                <option value="LV-3.05">LV-3.05</option>
-                <option value="LV-3.06">LV-3.06</option>
-                <option value="LV-3.HALL">LV-3.HALL</option>
-                <option value="LV-4.01">LV-4.01</option>
-                <option value="LV-4.02">LV-4.02</option>
-                <option value="LV-4.03">LV-4.03</option>
-                <option value="LV-4.04">LV-4.04</option>
-                <option value="LV-4.05">LV-4.05</option>
-                <option value="LV-4.06">LV-4.06</option>
-                <option value="LV-4.07">LV-4.07</option>
-                <option value="LV-4.HALL">LV-4.HALL</option>
-                <option value="REFEITÓRIO ANEXO">REFEITÓRIO ANEXO</option>
-                <option value="SC-1.01">SC-1.01</option>
-                <option value="SC-1.02">SC-1.02</option>
-                <option value="SC-1.03">SC-1.03</option>
-                <option value="SC-1.04">SC-1.04</option>
-                <option value="SC-1.05">SC-1.05</option>
-                <option value="SC-1.06">SC-1.06</option>
-                <option value="SC-1.CANTINA">SC-1.CANTINA</option>
-                <option value="SC-1.COBERTURA">SC-1.COBERTURA</option>
-                <option value="SC-1.COZINHA">SC-1.COZINHA</option>
-                <option value="SC-1.DEPÓSITO">SC-1.DEPÓSITO</option>
-                <option value="SC-1.DEPOSITO ESPORTIVO">SC-1.DEPOSITO ESPORTIVO</option>
-                <option value="SC-1.DML">SC-1.DML</option>
-                <option value="SC-1.ESPERA">SC-1.ESPERA</option>
-                <option value="SC-1.HALL/RECEPÇÃO">SC-1.HALL/RECEPÇÃO</option>
-                <option value="SC-1.LAVAGEM">SC-1.LAVAGEM</option>
-                <option value="SC-1.LAVAGEM/COZINHA">SC-1.LAVAGEM/COZINHA</option>
-                <option value="SC-1.PÁTIO DE RECREAÇÃO">SC-1.PÁTIO DE RECREAÇÃO</option>
-                <option value="SC-1.RECEPÇÃO SCHOOL">SC-1.RECEPÇÃO SCHOOL</option>
-                <option value="SC-1.REFEITÓRIO SCHOOL">SC-1.REFEITÓRIO SCHOOL</option>
-                <option value="SC-2.01">SC-2.01</option>
-                <option value="SC-2.02">SC-2.02</option>
-                <option value="SC-2.03">SC-2.03</option>
-                <option value="SC-2.04">SC-2.04</option>
-                <option value="SC-2.05">SC-2.05</option>
-                <option value="SC-2.06">SC-2.06</option>
-                <option value="SC-2.07">SC-2.07</option>
-                <option value="SC-2.08">SC-2.08</option>
-                <option value="SC-2.09">SC-2.09</option>
-                <option value="SC-2.10">SC-2.10</option>
-                <option value="SC-2.11">SC-2.11</option>
-                <option value="SC-2.DML">SC-2.DML</option>
-                <option value="SC-2.HALL">SC-2.HALL</option>
-                <option value="SC-2.WC PCD">SC-2.WC PCD</option>
-                <option value="SC-3.11">SC-3.11</option>
-                <option value="SC-3.12">SC-3.12</option>
-                <option value="SC-3.13">SC-3.13</option>
-                <option value="SC-3.14">SC-3.14</option>
-                <option value="SC-3.15">SC-3.15</option>
-                <option value="SC-3.16">SC-3.16</option>
-                <option value="SC-3.17">SC-3.17</option>
-                <option value="SC-3.18">SC-3.18</option>
-                <option value="SC-3.DML">SC-3.DML</option>
-                <option value="SC-3.HALL">SC-3.HALL</option>
-                <option value="SC-3.SALA MÁQUINAS (LAB. CIENCIAS)">SC-3.SALA MÁQUINAS (LAB. CIENCIAS)</option>
-                <option value="SC-3.SANIT FEM E MASC">SC-3.SANIT FEM E MASC</option>
-                <option value="SC-3.WC PCD">SC-3.WC PCD</option>
-                <option value="SC-4.01">SC-4.01</option>
-                <option value="SC-4.02">SC-4.02</option>
-                <option value="SC-4.03">SC-4.03</option>
-                <option value="SC-4.04">SC-4.04</option>
-                <option value="SC-4.05">SC-4.05</option>
-                <option value="SC-4.06">SC-4.06</option>
-                <option value="SC-4.07">SC-4.07</option>
-                <option value="SC-4.08">SC-4.08</option>
-                <option value="SC-4.09">SC-4.09</option>
-                <option value="SC-4.10">SC-4.10</option>
-                <option value="SC-4.11">SC-4.11</option>
-                <option value="SC-4.12">SC-4.12</option>
-                <option value="SC-4.13">SC-4.13</option>
-                <option value="SC-4.14">SC-4.14</option>
-                <option value="SC-4.15">SC-4.15</option>
-                <option value="SC-4.16">SC-4.16</option>
-                <option value="SC-4.BIBLIOTECA">SC-4.BIBLIOTECA</option>
-                <option value="SC-4.ESPERA">SC-4.ESPERA</option>
-                <option value="SC-4.HALL">SC-4.HALL</option>
-                <option value="SC-4.WC PCD">SC-4.WC PCD</option>
-                <option value="SC-5.CASA DE MÁQUINAS">SC-5.CASA DE MÁQUINAS</option>
-                <option value="SC-5.LAJE DO PAVIMENTO">SC-5.LAJE DO PAVIMENTO</option>
-                <option value="TRIAGEM ALMOXARIFADO">TRIAGEM ALMOXARIFADO</option>
+                <!-- As opções serão carregadas pelo JavaScript -->
             </select>
         </div>
 
         <p>Selecione o tipo de suporte desejado:</p>
 
-        <button class="btn btn-ti" onclick="redirecionar('ti')">
+        <button class="btn btn-ti" id="btn-ti">
             Suporte de TI (Computadores, Wi-Fi, etc.)
         </button>
 
-        <button class="btn btn-manutencao" onclick="redirecionar('manutencao')">
+        <button class="btn btn-manutencao" id="btn-manutencao">
             Manutenção (Lâmpadas, Ar-condicionado, etc.)
         </button>
 
         <p id="mensagem-erro" class="error"></p>
     </div>
 
-    <script>
-        const linksManutencao = {
-            "IA-2.02": "https://app.produttivo.com.br/r/d91a0a57-0d3b-4e23-9f43-f7e43d8a0c66?t=uxSqFdAr8zqGds0L58UsyQsgu4jt-uXxNS4LDU8NemawHhUf8Wi3age",
-            "LAB-3.05": "https://exemplo.com/manutencao-lab305-criptografado",
-        };
-
-        const urlParams = new URLSearchParams(window.location.search);
-        let sala = urlParams.get('sala');
-
-        function atualizarNomeSala() {
-            const nomeSalaEl = document.getElementById("nome-sala");
-            const salaContainer = document.getElementById("sala-container");
-
-            if (sala) {
-                nomeSalaEl.textContent = `Sala: ${sala.toUpperCase()}`;
-                salaContainer.style.display = "none";
-            } else {
-                nomeSalaEl.textContent = "Sala não identificada";
-                salaContainer.style.display = "block";
-            }
-        }
-
-        function redirecionar(tipo) {
-            const mensagemErro = document.getElementById("mensagem-erro");
-            mensagemErro.textContent = "";
-
-            if (!sala) {
-                mensagemErro.textContent = "Erro: Selecione uma sala antes de continuar.";
-                return;
-            }
-
-            if (tipo === 'ti') {
-                window.location.href = `https://docs.google.com/forms/d/e/1FAIpQLSci61oxLs-88LfNgW813mc1MIIWVKs3Lo0zdxivu-Lbfv9wnA/viewform?usp=pp_url&entry.2074073475=${sala}`;
-                return;
-            }
-
-            if (tipo === 'manutencao') {
-                const link = linksManutencao[sala];
-                if (link) {
-                    window.location.href = link;
-                } else {
-                    mensagemErro.textContent = `Erro: Sala ${sala} não possui link de manutenção cadastrado.`;
-                }
-            }
-        }
-
-        function selecionarSala() {
-            const salaSelecionada = document.getElementById("sala-select").value;
-            if (salaSelecionada) {
-                window.location.href = `?sala=${salaSelecionada}`;
-            }
-        }
-
-        atualizarNomeSala();
-    </script>
+    <script src="assets/js/script.js"></script>
 </body>
-
 </html>
-
-
-<!-- window.location.href = `https://grupobrighteducation.com.br/?sala=${salaSelecionada}`; -->

@@ -1,0 +1,90 @@
+/* Estilos globais */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(180deg, #191111, #514d4d);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: self-start;
+    height: 100vh;
+}
+
+.container {
+    max-width: 500px;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: #333;
+}
+
+.logo-header {
+    max-width: 120px;
+    margin-bottom: 20px;
+}
+
+.sala-info {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 15px 0;
+    padding: 12px;
+    color: black;
+    border-radius: 8px;
+}
+
+.btn {
+    display: block;
+    width: 90%;
+    margin: 15px auto;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn-ti {
+    background: #fea058;
+}
+
+.btn-ti:hover {
+    background: #d35400;
+}
+
+.btn-manutencao {
+    background: #fea058;
+}
+
+.btn-manutencao:hover {
+    background: #d35400;
+}
+
+.error {
+    color: #c0392b;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+#sala-container {
+    display: none;
+}
