@@ -35,11 +35,10 @@
         }
 
         .sala-info {
-            font-size: 2em;
+            font-size: 1.5em;
             font-weight: bold;
             margin: 15px 0;
             padding: 12px;
-            /* background: #3498db; */
             color: black;
             border-radius: 8px;
         }
@@ -84,6 +83,15 @@
             font-weight: bold;
             margin-top: 15px;
         }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
     </style>
 </head>
 
@@ -92,6 +100,15 @@
         <img src="assets/suporte-ti.png" alt="Solicitar Suporte" class="logo-header">
 
         <div class="sala-info" id="nome-sala">Sala: Carregando...</div>
+
+        <p>Selecione sua sala:</p>
+        <select id="sala-select" onchange="selecionarSala()">
+            <option value="">-- Escolha uma sala --</option>
+            <option value="IA-2.02">IA-2.02</option>
+            <option value="LAB-3.05">LAB-3.05</option>
+            <option value="SALA-101">SALA-101</option>
+            <option value="SALA-202">SALA-202</option>
+        </select>
 
         <p>Selecione o tipo de suporte desejado:</p>
 
@@ -108,17 +125,21 @@
 
     <script>
         const linksManutencao = {
-            "IA-2.02": "https://app.produttivo.com.br/r/d91a0a57-0d3b-4e23-9f43-f7e43d8a0c66?t=uxSqFdAr8zqGds0L58UsyQsgu4jt-uXxNS4LDU8NemawHhUf8Wi3ag",
+            "IA-2.02": "https://app.produttivo.com.br/r/d91a0a57-0d3b-4e23-9f43-f7e43d8a0c66?t=uxSqFdAr8zqGds0L58UsyQsgu4jt-uXxNS4LDU8NemawHhUf8Wi3age",
             "LAB-3.05": "https://exemplo.com/manutencao-lab305-criptografado",
         };
 
         const urlParams = new URLSearchParams(window.location.search);
-        const sala = urlParams.get('sala');
+        let sala = urlParams.get('sala');
 
-        if (sala) {
-            document.getElementById("nome-sala").textContent = `Sala: ${sala.toUpperCase()}`;
-        } else {
-            document.getElementById("nome-sala").textContent = "Sala não identificada";
+        function atualizarNomeSala() {
+            const nomeSalaEl = document.getElementById("nome-sala");
+            if (sala) {
+                nomeSalaEl.textContent = `Sala: ${sala.toUpperCase()}`;
+                document.getElementById("sala-select").value = sala;
+            } else {
+                nomeSalaEl.textContent = "Sala não identificada";
+            }
         }
 
         function redirecionar(tipo) {
@@ -126,7 +147,7 @@
             mensagemErro.textContent = "";
 
             if (!sala) {
-                mensagemErro.textContent = "Erro: Sala não identificada. Escaneie o QRCode novamente.";
+                mensagemErro.textContent = "Erro: Selecione uma sala antes de continuar.";
                 return;
             }
 
@@ -144,6 +165,15 @@
                 }
             }
         }
+
+        function selecionarSala() {
+            const salaSelecionada = document.getElementById("sala-select").value;
+            if (salaSelecionada) {
+                window.location.href = `https://${salaSelecionada.toLowerCase()}.seusite.com`;
+            }
+        }
+
+        atualizarNomeSala();
     </script>
 </body>
 
