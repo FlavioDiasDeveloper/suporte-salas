@@ -92,6 +92,10 @@
             border-radius: 5px;
             border: 1px solid #ddd;
         }
+
+        #sala-container {
+            display: none;
+        }
     </style>
 </head>
 
@@ -101,14 +105,16 @@
 
         <div class="sala-info" id="nome-sala">Sala: Carregando...</div>
 
-        <p>Selecione sua sala:</p>
-        <select id="sala-select" onchange="selecionarSala()">
-            <option value="">-- Escolha uma sala --</option>
-            <option value="IA-2.02">IA-2.02</option>
-            <option value="LAB-3.05">LAB-3.05</option>
-            <option value="SALA-101">SALA-101</option>
-            <option value="SALA-202">SALA-202</option>
-        </select>
+        <div id="sala-container">
+            <p>Selecione sua sala:</p>
+            <select id="sala-select" onchange="selecionarSala()">
+                <option value="">-- Escolha uma sala --</option>
+                <option value="IA-2.02">IA-2.02</option>
+                <option value="LAB-3.05">LAB-3.05</option>
+                <option value="SALA-101">SALA-101</option>
+                <option value="SALA-202">SALA-202</option>
+            </select>
+        </div>
 
         <p>Selecione o tipo de suporte desejado:</p>
 
@@ -134,11 +140,14 @@
 
         function atualizarNomeSala() {
             const nomeSalaEl = document.getElementById("nome-sala");
+            const salaContainer = document.getElementById("sala-container");
+
             if (sala) {
                 nomeSalaEl.textContent = `Sala: ${sala.toUpperCase()}`;
-                document.getElementById("sala-select").value = sala;
+                salaContainer.style.display = "none";
             } else {
                 nomeSalaEl.textContent = "Sala não identificada";
+                salaContainer.style.display = "block";
             }
         }
 
@@ -169,7 +178,7 @@
         function selecionarSala() {
             const salaSelecionada = document.getElementById("sala-select").value;
             if (salaSelecionada) {
-                window.location.href = `https://grupobrighteducation.com.br/?sala=${salaSelecionada}`;
+                window.location.href = `?sala=${salaSelecionada}`;
             }
         }
 
@@ -178,3 +187,6 @@
 </body>
 
 </html>
+
+
+<!-- window.location.href = `https://grupobrighteducation.com.br/?sala=${salaSelecionada}`; -->
